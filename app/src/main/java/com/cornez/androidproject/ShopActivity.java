@@ -87,6 +87,7 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.setIsPassiveOn(true);
                 passive1.setEnabled(false);
+                passive1.setBackgroundResource(R.drawable.button_disabled);
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -122,6 +123,7 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.setProgBar(true);
                 prog1.setEnabled(false);
+                prog1.setBackgroundResource(R.drawable.button_disabled);
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
