@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AndroidProject</string>
+
+    <string name="click_view">0</string>
+    <string name="coffee_image">image of progress bar icon</string>
+    <string name="title">&lt;Title&gt;COM SCI CLICKER&lt;/Title&gt;</string>
+    <string name="click_img">Clicker Image</string>
+    <string name="shop_button">TO SHOP</string>
+    <string name="settings_button">TO SETTINGS</string>
+
+    <string name="shop_title">printf("Click Shop");</string>
+    <string name="upgrade_click">/*  Click Upgrade  */</string>
+    <string name="click_upgrade1">Click 1</string>
+    <string name="click_upgrade2">Click 2</string>
+    <string name="upgrade_passive">// Passive Upgrade</string>
+    <string name="passive_upgrade1">Passive 1</string>
+    <string name="passive_upgrade2">Passive 2</string>
+    <string name="upgrade_storage">#Storage Upgrade</string>
+    <string name="storage_upgrade1">Storage 1</string>
+    <string name="storage_upgrade2">Storage 2</string>
+    <string name="buy">BUY</string>
+    <string name="homeBtn">TO HOME</string>
+</resources>
