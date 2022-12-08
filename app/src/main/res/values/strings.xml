@@ -14,10 +14,10 @@
     <string name="click_upgrade2">Click 2</string>
     <string name="upgrade_passive">// Passive Upgrade</string>
     <string name="num_of_bytes">/* number of bytes */</string>
-    <string name="passive_upgrade1">Passive 1</string>
+    <string name="passive_upgrade1">Unlock Passive Clicker</string>
     <string name="passive_upgrade2">Passive 2</string>
-    <string name="upgrade_storage">#Storage Upgrade</string>
-    <string name="storage_upgrade1">Storage 1</string>
+    <string name="upgrade_storage">#Progress Bar Upgrade</string>
+    <string name="storage_upgrade1">Unlock Progress Bar</string>
     <string name="storage_upgrade2">Storage 2</string>
     <string name="buy">BUY</string>
     <string name="homeBtn">TO HOME</string>
