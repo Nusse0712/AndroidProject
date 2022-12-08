@@ -107,7 +107,7 @@ private MediaPlayer mp;
 
     //a function that is used for the apply button in the popup
     public void applySettings(View view){
-        volumeBar.setProgress(volumeBar.getProgress()); //set the progess of the bars first
+        volumeBar.setProgress(volumeBar.getProgress()); //set the process of the bars first
         sfxBar.setProgress(sfxBar.getProgress());
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumeBar.getProgress(), 0);
         //do the same for sfx;
@@ -162,7 +162,7 @@ private MediaPlayer mp;
             myDialog.setContentView(R.layout.custompopup);
             myDialog.show(); //on click shows the dialog box
 
-            //volumeBar and sfxBar and myDialog are only useable in this scope
+            //volumeBar and sfxBar and myDialog are only usable in this scope
             volumeBar = myDialog.findViewById(R.id.musicBar);
             volumeBar.setMax(100);
             volumeBar.setProgress(getCurrentVol());
