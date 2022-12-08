@@ -148,7 +148,7 @@ public class Click implements Serializable {
     }
 
     public boolean checkTotal(int price){
-        if (total > price){
+        if (total >= price){
             return true;
         }
         else{
