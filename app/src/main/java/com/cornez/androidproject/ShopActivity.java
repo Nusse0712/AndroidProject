@@ -111,6 +111,7 @@ public class ShopActivity extends Activity {
             if(click.checkTotal(price)==true){
                 click.decreaseTotal(price);
                 click.setIsPassiveOn(true);
+                click.setPerPassive(1);
                 passive1.setEnabled(false);
                 passive1.setBackgroundResource(R.drawable.button_disabled);
                 passive1.setTextColor(getApplication().getResources().getColor(R.color.black));
