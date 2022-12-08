@@ -2,9 +2,11 @@ package com.cornez.androidproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class ShopActivity extends Activity {
@@ -24,6 +26,7 @@ public class ShopActivity extends Activity {
 
         click = (Click) getIntent().getSerializableExtra("serialzable");
         init();
+        initAnimation();
         setOnclickListeners();
     }
 
@@ -35,6 +38,13 @@ public class ShopActivity extends Activity {
         prog1 = (Button) findViewById(R.id.button5);
         prog2 = (Button) findViewById(R.id.button6);
         homeBtn = (Button) findViewById(R.id.HomeBtn);
+    }
+    private void initAnimation(){
+        LinearLayout linearLayout =(LinearLayout) findViewById(R.id.shopLayout);
+        AnimationDrawable animationDrawable =(AnimationDrawable) linearLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
     }
 
     private void setOnclickListeners(){

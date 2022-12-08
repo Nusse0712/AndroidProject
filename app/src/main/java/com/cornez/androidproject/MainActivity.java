@@ -29,6 +29,7 @@ private TextView cookieView;
 private Button settingsBtn;
 private Button shopBtn;
 private Click click;
+private TextView progView;
 private int prog =0;
 private Dialog myDialog;
 private SeekBar volumeBar, sfxBar;
@@ -36,7 +37,7 @@ private AudioManager audioManager;
 private MediaPlayer player; //need to create another player for the SFX sound
 private static int currentVol;
 private static int currentSFX;
-    public static int LAUNCH_SHOP = 1;
+public static int LAUNCH_SHOP = 1;
 MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,10 @@ MediaPlayer mp;
         cookieView = (TextView) findViewById(R.id.clickText);
         progressBar = (ProgressBar) findViewById(R.id.progBar);
         click = new Click();
+        progView = (TextView) findViewById(R.id.progText);
         mp = MediaPlayer.create(this, R.raw.mixkit);
         mp.setLooping(false);
+
     }
     private void initAnimation(){
         LinearLayout linearLayout =(LinearLayout) findViewById(R.id.mainLayout);
@@ -128,6 +131,7 @@ MediaPlayer mp;
             int num = click.getPerClick();
             click.increaseTotal(num);
             if(click.getProgBarStatus()==true) {
+                progView.setVisibility(View.INVISIBLE);
                 if (prog <= 199) {
                     prog += click.getProgressRate();
 

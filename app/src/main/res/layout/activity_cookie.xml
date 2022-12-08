@@ -24,6 +24,7 @@
 
 
         />
+
     <TextView
         android:id="@+id/clickText"
         android:layout_width="wrap_content"
@@ -36,6 +37,15 @@
         android:textColor="#fff"
         android:textStyle="bold|italic"
 
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/num_of_bytes"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:fontFamily="@font/firacode"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,6 +74,15 @@
 
             />
     </LinearLayout>
+    <TextView
+        android:id="@+id/progText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Unlock"
+        android:textColor="@color/white"
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold|italic"
+        android:fontFamily="@font/firacode"/>
 
     <ImageButton
         android:id="@+id/clicker"
