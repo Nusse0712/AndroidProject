@@ -63,6 +63,12 @@ public class ShopActivity extends Activity {
         prog2.setOnClickListener(ProgbarUpgrade);
         homeBtn.setOnClickListener(backtoHome);
     }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        overridePendingTransition(R.anim.main_in, R.anim.shop_out);
+
+    }
     private View.OnClickListener buyClickOne = new View.OnClickListener(){
         @Override
         public void onClick(View view) {

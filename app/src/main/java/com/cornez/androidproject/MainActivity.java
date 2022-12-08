@@ -197,6 +197,12 @@ private MediaPlayer mp;
         player.start();
     }
     @Override
+    protected void onStart(){
+        super.onStart();
+        overridePendingTransition(R.anim.shop_in,R.anim.main_out);
+
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
