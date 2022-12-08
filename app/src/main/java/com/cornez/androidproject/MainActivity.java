@@ -38,7 +38,7 @@ private MediaPlayer player; //need to create another player for the SFX sound
 private static int currentVol;
 private static int currentSFX;
 public static int LAUNCH_SHOP = 1;
-MediaPlayer mp;
+private MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +70,7 @@ MediaPlayer mp;
         progressBar = (ProgressBar) findViewById(R.id.progBar);
         click = new Click();
         progView = (TextView) findViewById(R.id.progText);
-        mp = MediaPlayer.create(this, R.raw.mixkit);
-        mp.setLooping(false);
+
 
     }
     private void initAnimation(){
@@ -88,7 +87,12 @@ MediaPlayer mp;
     }
     public void play(){
         if(player == null){
-            player = MediaPlayer.create(this,R.raw.music); //had the .mp3 saved as 'music'. Same way to assign for SFX sounds
+            player = MediaPlayer.create(this,R.raw.music); //had the .mp3 saved as 'music'
+
+        }
+        if(mp == null){
+            mp = MediaPlayer.create(this, R.raw.mixkit);
+            mp.setLooping(false);
         }
         player.start();
     }
@@ -118,8 +122,13 @@ MediaPlayer mp;
         currentSFX = sfxBar.getProgress();
         myDialog.hide();
     }
+
     public void reset(View view){
-        //call a function from the clicker class to reset
+        click = new Click();
+        cookieView.setText(click.getTotal().toString());
+        progView.setVisibility(View.VISIBLE);
+        prog = 0;
+        progressBar.setProgress(prog);
     }
 
 
