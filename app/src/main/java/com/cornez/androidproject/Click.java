@@ -22,6 +22,7 @@ public class Click implements Serializable {
 
 
     public Click(){//when storage is learned this will be changed to have the values passed into it
+        super();
         perClick = 1;
         total = 0;
         isPassiveOn = false;
@@ -37,7 +38,7 @@ public class Click implements Serializable {
     }
 
     //getters
-    public int getPerClick(){
+    public Integer getPerClick(){
         return perClick;
     }
 
@@ -53,24 +54,24 @@ public class Click implements Serializable {
         return perPassive;
     }
 
-    public int getPerClickUpgrade1Cost(){
+    public Integer getPerClickUpgrade1Cost(){
         return perClickUpgrade1Cost;
     }
 
-    public int getPerClickUpgrade2Cost(){
+    public Integer getPerClickUpgrade2Cost(){
         return perClickUpgrade2Cost;
     }
 
-    public int getTurnOnPassiveCost(){
+    public Integer getTurnOnPassiveCost(){
         return turnOnPassiveCost;
     }
 
-    public int getPerPassiveCost(){
+    public Integer getPerPassiveCost(){
         return perPassiveCost;
     }
-    public int getProgBarCost(){     return turnOnProgBarCost;}
+    public Integer getProgBarCost(){     return turnOnProgBarCost;}
     public boolean getProgBarStatus(){return isProgBarOn;}
-    public int getPerProgBarCost(){return getPerProgBarCost();}
+    public Integer getPerProgBarCost(){return perProgBarCost;}
     public int getProgressRate(){
         return progressRate;
     }

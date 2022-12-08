@@ -23,8 +23,8 @@ public class ShopActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-
-        click = (Click) getIntent().getSerializableExtra("serialzable");
+        click = new Click();
+        click = (Click) getIntent().getSerializableExtra("serializable");
         init();
         initAnimation();
         setOnclickListeners();
@@ -38,6 +38,13 @@ public class ShopActivity extends Activity {
         prog1 = (Button) findViewById(R.id.button5);
         prog2 = (Button) findViewById(R.id.button6);
         homeBtn = (Button) findViewById(R.id.HomeBtn);
+        click1Btn.setText(click.getPerClickUpgrade1Cost().toString());
+        click2Btn.setText(click.getPerClickUpgrade2Cost().toString());
+        passive1.setText(click.getTurnOnPassiveCost().toString());
+        passive2.setText(click.getPerPassiveCost().toString());
+        prog1.setText(click.getProgBarCost().toString());
+        prog2.setText(click.getPerPassiveCost().toString());
+
     }
     private void initAnimation(){
         LinearLayout linearLayout =(LinearLayout) findViewById(R.id.shopLayout);
@@ -64,6 +71,7 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.upgrade1PerClick();
                 click.increaseUpgrade1Cost();
+                click1Btn.setText(click.getPerClickUpgrade1Cost().toString());
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -80,6 +88,7 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.upgrade2PerClick();
                 click.increaseUpgrade2Cost();
+                click2Btn.setText(click.getPerClickUpgrade2Cost().toString());
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -98,6 +107,8 @@ public class ShopActivity extends Activity {
                 click.setIsPassiveOn(true);
                 passive1.setEnabled(false);
                 passive1.setBackgroundResource(R.drawable.button_disabled);
+                passive1.setTextColor(getApplication().getResources().getColor(R.color.black));
+                passive1.setText(R.string.SOLD);
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -115,6 +126,8 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.upgradePassiveClick();
                 click.increaseUpgradePassiveCost();
+                passive2.setText(click.getPerPassiveCost().toString());
+
 
 
             }else{
@@ -134,6 +147,9 @@ public class ShopActivity extends Activity {
                 click.setProgBar(true);
                 prog1.setEnabled(false);
                 prog1.setBackgroundResource(R.drawable.button_disabled);
+                prog1.setTextColor(getApplication().getResources().getColor(R.color.black));
+                prog1.setText(R.string.SOLD);
+
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -151,6 +167,8 @@ public class ShopActivity extends Activity {
                 click.decreaseTotal(price);
                 click.upgradeProgressBar();
                 click.increaseProgressBarCost();
+                prog2.setText(click.getPerProgBarCost().toString());
+
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",

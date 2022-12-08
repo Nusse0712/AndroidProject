@@ -10,16 +10,17 @@
 
     <string name="shop_title">printf("Click Shop");</string>
     <string name="upgrade_click">/*  Click Upgrade  */</string>
-    <string name="click_upgrade1">Click 1</string>
-    <string name="click_upgrade2">Click 2</string>
+    <string name="click_upgrade1">Upgrade per Click By 1</string>
+    <string name="click_upgrade2">Upgrade per Click By 5</string>
     <string name="upgrade_passive">// Passive Upgrade</string>
     <string name="num_of_bytes">/* number of bytes */</string>
     <string name="passive_upgrade1">Unlock Passive Clicker</string>
-    <string name="passive_upgrade2">Passive 2</string>
+    <string name="passive_upgrade2">Increase Passive click by 8</string>
     <string name="upgrade_storage">#Progress Bar Upgrade</string>
     <string name="storage_upgrade1">Unlock Progress Bar</string>
-    <string name="storage_upgrade2">Storage 2</string>
+    <string name="storage_upgrade2">Increase progress bar speed by 1</string>
     <string name="buy">BUY</string>
     <string name="homeBtn">TO HOME</string>
     <string name="Unlock">clicker.lang.UnlockException: Unlock Me</string>
+    <string name="SOLD">SOLD</string>
 </resources>
