@@ -27,7 +27,7 @@ public class Click implements Serializable {
         total = 0;
         isPassiveOn = false;
         isProgBarOn = false;
-        perPassive = 1;
+        perPassive = 0;
         perClickUpgrade1Cost = 50;
         perClickUpgrade2Cost = 200;
         turnOnPassiveCost = 500;

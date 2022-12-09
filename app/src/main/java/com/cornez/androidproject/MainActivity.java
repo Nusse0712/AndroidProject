@@ -19,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.os.Handler;
 
 import android.widget.Toast;
 
@@ -39,6 +40,10 @@ private static int currentVol;
 private static int currentSFX;
 public static int LAUNCH_SHOP = 1;
 private MediaPlayer mp;
+Handler handler = new Handler();
+Runnable runnable;
+int delay = 10000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,7 @@ private MediaPlayer mp;
         initAnimation();
         setOnclickListeners();
         setUpAudio();
+
 
     }
     private void setUpAudio(){
@@ -216,6 +222,25 @@ private MediaPlayer mp;
             }
         }
     }
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                click.increaseTotal(click.getPerPassive());
+                cookieView.setText(click.getTotal().toString());
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
+    }
+
 
 
 
