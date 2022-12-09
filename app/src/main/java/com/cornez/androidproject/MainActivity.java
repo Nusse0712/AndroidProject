@@ -146,7 +146,7 @@ int delay = 10000;
             int num = click.getPerClick();
             click.increaseTotal(num);
             if(click.getProgBarStatus()==true) {
-                progView.setVisibility(View.INVISIBLE);
+
                 if (prog <= 199) {
                     prog += click.getProgressRate();
 
@@ -216,6 +216,9 @@ int delay = 10000;
             if(resultCode == Activity.RESULT_OK){
                   click = (Click) data.getSerializableExtra("result");
                   cookieView.setText(click.getTotal().toString());
+                  if(click.getProgBarStatus()==true){
+                      progView.setVisibility(View.INVISIBLE);
+                  }
 
             }
         }

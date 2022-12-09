@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Unlock"
         android:textColor="@color/white"
-        android:layout_marginLeft="40dp"
+        android:layout_gravity="center_horizontal"
         android:textStyle="bold|italic"
         android:fontFamily="@font/firacode"/>
 

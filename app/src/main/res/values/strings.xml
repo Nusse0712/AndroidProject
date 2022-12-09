@@ -21,6 +21,6 @@
     <string name="storage_upgrade2">Increase progress bar speed by 1 byte</string>
     <string name="buy">BUY</string>
     <string name="homeBtn">TO HOME</string>
-    <string name="Unlock">clicker.lang.UnlockException: Unlock Me</string>
+    <string name="Unlock">Error: clicker.lang.UnlockException: Unlock Me</string>
     <string name="SOLD">SOLD</string>
 </resources>

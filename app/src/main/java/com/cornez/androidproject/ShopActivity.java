@@ -204,7 +204,7 @@ public class ShopActivity extends Activity {
                 prog1.setBackgroundResource(R.drawable.button_disabled);
                 prog1.setTextColor(getApplication().getResources().getColor(R.color.black));
                 prog1.setText(R.string.SOLD);
-                byteView.setText("Number of Bytes :"+click.getTotal().toString());
+                byteView.setText("Number of Bytes : "+click.getTotal().toString());
 
 
             }else{
