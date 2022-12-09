@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShopActivity extends Activity {
@@ -18,6 +19,7 @@ public class ShopActivity extends Activity {
     private Button prog1;
     private Button prog2;
     private Button homeBtn;
+    private TextView byteView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,31 @@ public class ShopActivity extends Activity {
         prog1 = (Button) findViewById(R.id.button5);
         prog2 = (Button) findViewById(R.id.button6);
         homeBtn = (Button) findViewById(R.id.HomeBtn);
+        byteView = (TextView) findViewById(R.id.numBytes);
         click1Btn.setText(click.getPerClickUpgrade1Cost().toString());
         click2Btn.setText(click.getPerClickUpgrade2Cost().toString());
-        passive1.setText(click.getTurnOnPassiveCost().toString());
+        if(click.getIsPassiveOn()){
+            passive1.setTextColor(getApplication().getResources().getColor(R.color.black));
+            passive1.setText(R.string.SOLD);
+            passive1.setBackgroundResource(R.drawable.button_disabled);
+            passive1.setEnabled(false);
+        }else {
+            passive1.setText(click.getTurnOnPassiveCost().toString());
+        }
+        if(click.getProgBarStatus()){
+            prog1.setTextColor(getApplication().getResources().getColor(R.color.black));
+            prog1.setText(R.string.SOLD);
+            prog1.setBackgroundResource(R.drawable.button_disabled);
+            prog1.setEnabled(false);
+        }else {
+            prog1.setText(click.getProgBarCost().toString());
+        }
         passive2.setText(click.getPerPassiveCost().toString());
-        prog1.setText(click.getProgBarCost().toString());
-        prog2.setText(click.getPerPassiveCost().toString());
+
+        prog2.setText(click.getPerProgBarCost().toString());
+        byteView.setText("Number of Bytes :"+click.getTotal().toString());
+
+
 
     }
     private void initAnimation(){
@@ -67,6 +88,29 @@ public class ShopActivity extends Activity {
     protected void onStart(){
         super.onStart();
         overridePendingTransition(R.anim.main_in, R.anim.shop_out);
+        click1Btn.setText(click.getPerClickUpgrade1Cost().toString());
+        click2Btn.setText(click.getPerClickUpgrade2Cost().toString());
+        if(click.getIsPassiveOn()){
+            passive1.setTextColor(getApplication().getResources().getColor(R.color.black));
+            passive1.setText(R.string.SOLD);
+            passive1.setBackgroundResource(R.drawable.button_disabled);
+            passive1.setEnabled(false);
+        }else {
+            passive1.setText(click.getTurnOnPassiveCost().toString());
+        }
+
+        if(click.getProgBarStatus()){
+            prog1.setTextColor(getApplication().getResources().getColor(R.color.black));
+            prog1.setText(R.string.SOLD);
+            prog1.setBackgroundResource(R.drawable.button_disabled);
+            prog1.setEnabled(false);
+        }else {
+            prog1.setText(click.getProgBarCost().toString());
+        }
+        passive2.setText(click.getPerPassiveCost().toString());
+
+        prog2.setText(click.getPerProgBarCost().toString());
+        byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
     }
     private View.OnClickListener buyClickOne = new View.OnClickListener(){
@@ -78,6 +122,7 @@ public class ShopActivity extends Activity {
                 click.upgrade1PerClick();
                 click.increaseUpgrade1Cost();
                 click1Btn.setText(click.getPerClickUpgrade1Cost().toString());
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -95,6 +140,7 @@ public class ShopActivity extends Activity {
                 click.upgrade2PerClick();
                 click.increaseUpgrade2Cost();
                 click2Btn.setText(click.getPerClickUpgrade2Cost().toString());
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -116,6 +162,7 @@ public class ShopActivity extends Activity {
                 passive1.setBackgroundResource(R.drawable.button_disabled);
                 passive1.setTextColor(getApplication().getResources().getColor(R.color.black));
                 passive1.setText(R.string.SOLD);
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
             }else{
                 Toast.makeText(ShopActivity.this, "Insufficient Bytes",
@@ -134,6 +181,7 @@ public class ShopActivity extends Activity {
                 click.upgradePassiveClick();
                 click.increaseUpgradePassiveCost();
                 passive2.setText(click.getPerPassiveCost().toString());
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
 
 
@@ -156,6 +204,7 @@ public class ShopActivity extends Activity {
                 prog1.setBackgroundResource(R.drawable.button_disabled);
                 prog1.setTextColor(getApplication().getResources().getColor(R.color.black));
                 prog1.setText(R.string.SOLD);
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
 
             }else{
@@ -175,6 +224,7 @@ public class ShopActivity extends Activity {
                 click.upgradeProgressBar();
                 click.increaseProgressBarCost();
                 prog2.setText(click.getPerProgBarCost().toString());
+                byteView.setText("Number of Bytes :"+click.getTotal().toString());
 
 
             }else{

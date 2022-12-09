@@ -30,6 +30,18 @@
         android:textColor="#fff"
         />
     <TextView
+        android:id="@+id/numBytes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Number of Bytes:"
+        android:fontFamily="@font/firacode"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:textColor="#fff"
+        />
+    <TextView
         android:fontFamily="@font/firacode"
         android:id="@+id/clickUpgradeHeader"
         android:layout_width="wrap_content"

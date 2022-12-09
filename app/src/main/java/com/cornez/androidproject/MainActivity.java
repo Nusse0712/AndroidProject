@@ -216,9 +216,7 @@ int delay = 10000;
             if(resultCode == Activity.RESULT_OK){
                   click = (Click) data.getSerializableExtra("result");
                   cookieView.setText(click.getTotal().toString());
-                  if(click.getIsPassiveOn()==true){
-                      //start the passive clicker
-                  }
+
             }
         }
     }
