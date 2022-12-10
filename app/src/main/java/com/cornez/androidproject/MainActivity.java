@@ -94,7 +94,7 @@ private File FILE_;
         progressBar = (ProgressBar) findViewById(R.id.progBar);
         click = new Click();
         progView = (TextView) findViewById(R.id.progText);
-        player = MediaPlayer.create(this, R.raw.music);
+        player = MediaPlayer.create(this, R.raw.actualmusic);
         FILE_ = new File(getApplicationContext().getFilesDir()+"/data.txt");
 
 
@@ -113,7 +113,7 @@ private File FILE_;
     }
     public void play(){
         if(player == null){
-            player = MediaPlayer.create(this,R.raw.music); //had the .mp3 saved as 'music'
+            player = MediaPlayer.create(this,R.raw.actualmusic); //had the .mp3 saved as 'music'
 
         }
         if(mp == null){
