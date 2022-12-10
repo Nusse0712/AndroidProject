@@ -22,6 +22,14 @@ import android.view.View.OnClickListener;
 import android.os.Handler;
 
 import android.widget.Toast;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends Activity {
 private ProgressBar progressBar;
@@ -34,7 +42,7 @@ private TextView progView;
 private int prog =0;
 private Dialog myDialog;
 private SeekBar volumeBar, sfxBar;
-private AudioManager audioManager;
+private AudioManager audioManager0, audioManager1;
 private MediaPlayer player; //need to create another player for the SFX sound
 private static int currentVol;
 private static int currentSFX;
@@ -43,6 +51,8 @@ private MediaPlayer mp;
 Handler handler = new Handler();
 Runnable runnable;
 int delay = 10000;
+private File FILE_;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +62,11 @@ int delay = 10000;
         initAnimation();
         setOnclickListeners();
         setUpAudio();
-
+        try {
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     private void setUpAudio(){
@@ -60,8 +74,12 @@ int delay = 10000;
         play(); //plays the music
 
 
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,100, 0);
+        audioManager0 = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager0.setStreamVolume(AudioManager.STREAM_MUSIC,100, 0);
+
+        audioManager1 = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager1.setStreamVolume(AudioManager.STREAM_MUSIC,100, 0);
+
 
         currentSFX = 100;
         currentVol = 100;
@@ -76,6 +94,8 @@ int delay = 10000;
         progressBar = (ProgressBar) findViewById(R.id.progBar);
         click = new Click();
         progView = (TextView) findViewById(R.id.progText);
+        player = MediaPlayer.create(this, R.raw.music);
+        FILE_ = new File(getApplicationContext().getFilesDir()+"/data.txt");
 
 
     }
@@ -100,6 +120,7 @@ int delay = 10000;
             mp = MediaPlayer.create(this, R.raw.mixkit);
             mp.setLooping(false);
         }
+        player.setLooping(true);
         player.start();
     }
     public static int getCurrentVol() {
@@ -113,10 +134,9 @@ int delay = 10000;
 
     //a function that is used for the apply button in the popup
     public void applySettings(View view){
-        volumeBar.setProgress(volumeBar.getProgress()); //set the process of the bars first
+        volumeBar.setProgress(volumeBar.getProgress()); //set the progess of the bars first
         sfxBar.setProgress(sfxBar.getProgress());
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumeBar.getProgress(), 0);
-        //do the same for sfx;
+        audioManager0.setStreamVolume(AudioManager.STREAM_MUSIC,volumeBar.getProgress(), 0);
 
         //toast message to indicate it was applied
         Toast.makeText(this, "Applied", Toast.LENGTH_SHORT).show();
@@ -135,7 +155,71 @@ int delay = 10000;
         progView.setVisibility(View.VISIBLE);
         prog = 0;
         progressBar.setProgress(prog);
+        Toast.makeText(this,"Game Reset" , Toast.LENGTH_SHORT).show();
     }
+    public void saveData(String data) throws IOException {
+        FileOutputStream fos;
+
+        fos = openFileOutput(FILE_.getName(),MODE_PRIVATE);
+        toLog(FILE_.getPath() + FILE_.getName());
+        fos.write(data.getBytes());
+        toLog(data);
+        data = null;
+
+        if(fos != null){
+            fos.close();
+        }
+    }
+    public void loadData() throws IOException{
+        String NAME_OF_FILE = getFilesDir().getAbsolutePath() + "/data.txt";
+        FileInputStream fis = new FileInputStream(new File(NAME_OF_FILE));
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String data = " ";
+
+        try {
+            data = br.readLine();
+            //processData(data);
+            click.setTotal(toInt(data));
+            cookieView.setText(data);
+            toLog("Data: " + data);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        br.close();
+        fis.close();
+    }
+    public String toSString(int i){
+        String s = Integer.toString(i);
+        return s;
+    }
+
+    public int toInt(String s){
+        int i = Integer.parseInt(s);
+        return i;
+    }
+
+    public int toInt(StringBuilder sb){
+        String s = sb.toString();
+        int i = Integer.parseInt(s);
+        return i;
+    }
+
+    public boolean toBool(StringBuilder sb){
+        String s = sb.toString();
+        if(s.toLowerCase() == "true")
+            return true;
+        else
+            return false;
+    }
+
+    private void toLog(String msg){
+        final String TAG = "MainActivity";
+        Log.i(TAG,msg + " " + click.getTotal());
+    }
+
 
 
     private View.OnClickListener clickBtn = new View.OnClickListener(){
@@ -168,13 +252,12 @@ int delay = 10000;
             myDialog.setContentView(R.layout.custompopup);
             myDialog.show(); //on click shows the dialog box
 
-            //volumeBar and sfxBar and myDialog are only usable in this scope
             volumeBar = myDialog.findViewById(R.id.musicBar);
-            volumeBar.setMax(100);
+            volumeBar.setMax(22);
             volumeBar.setProgress(getCurrentVol());
 
             sfxBar = myDialog.findViewById(R.id.SFXbar);
-            sfxBar.setMax(100);
+            sfxBar.setMax(22);
             sfxBar.setProgress(getCurrentSFX());
 
         }
@@ -195,6 +278,11 @@ int delay = 10000;
     protected void onStop(){
         super.onStop();
         player.pause();
+        try {
+            saveData(toSString(click.getTotal()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
