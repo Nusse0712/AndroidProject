@@ -118,7 +118,6 @@ private File FILE_;
         }
         if(mp == null){
             mp = MediaPlayer.create(this, R.raw.click);
-            mp.setLooping(false);
         }
         player.setLooping(true);
         player.start();
